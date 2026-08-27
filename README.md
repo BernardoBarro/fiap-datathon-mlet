@@ -32,6 +32,7 @@ A solução será desenvolvida utilizando uma base pública do Kaggle relacionad
 data/
     raw/
     processed/
+```
 
 ## Execução local
 
