@@ -16,6 +16,21 @@ Inicialmente, será utilizado o algoritmo Thompson Sampling como política adapt
 
 A solução será desenvolvida utilizando uma base pública do Kaggle relacionada a campanhas de marketing bancário e conversão de clientes.
 
+## Dataset
+
+O projeto utiliza a base pública **Bank Marketing**, disponibilizada no Kaggle.
+
+Dataset:
+https://www.kaggle.com/datasets/henriqueyamahata/bank-marketing
+
+A base contém informações relacionadas a campanhas de marketing de uma instituição bancária portuguesa e possui como variável alvo `y`, que indica se o cliente realizou ou não a assinatura de um depósito a prazo.
+
+Foi utilizada a versão `bank-additional-full.csv`, contendo 41.188 registros.
+
+A análise exploratória dos dados está disponível em:
+
+`notebooks/01_eda.ipynb`
+
 ## Tecnologias
 
 - Python
