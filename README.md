@@ -33,6 +33,13 @@ data/
     raw/
     processed/
 
+## Execução local
+
+Crie um ambiente virtual:
+
+```bash
+python -m venv .venv
+
 notebooks/
 src/
 tests/
