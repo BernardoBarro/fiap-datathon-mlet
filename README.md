@@ -32,6 +32,14 @@ A solução será desenvolvida utilizando uma base pública do Kaggle relacionad
 data/
     raw/
     processed/
+```
+
+## Execução local
+
+Crie um ambiente virtual:
+
+```bash
+python -m venv .venv
 
 notebooks/
 src/
