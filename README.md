@@ -60,3 +60,25 @@ notebooks/
 src/
 tests/
 models/
+```
+
+## Arquitetura-alvo em nuvem
+
+Para uma possível disponibilização da solução em produção, a arquitetura proposta utiliza serviços da AWS.
+
+A API desenvolvida com FastAPI poderia ser empacotada em uma imagem Docker e armazenada no Amazon ECR. A aplicação seria executada utilizando Amazon ECS com Fargate, permitindo executar o serviço sem a necessidade de gerenciar diretamente servidores ou máquinas virtuais. O Amazon API Gateway poderia ser utilizado como ponto de entrada para as requisições externas, encaminhando as solicitações para a API responsável pela recomendação do canal de contato.
+
+Os dados processados e os artefatos necessários para inicialização da política poderiam ser armazenados no Amazon S3. Para observabilidade, o Amazon CloudWatch seria utilizado para centralizar logs e acompanhar métricas da aplicação, como quantidade de requisições, erros e tempo de resposta. Essa arquitetura permite que a solução atual evolua de uma execução local para um serviço escalável e monitorável em nuvem.
+
+### Visão da arquitetura
+
+```mermaid
+flowchart LR
+    A[Cliente] --> B[Amazon API Gateway]
+    B --> C[FastAPI - Amazon ECS Fargate]
+    C --> D[Política de Recomendação]
+    D --> E[Amazon S3]
+
+    F[Amazon ECR] --> C
+    C --> G[Amazon CloudWatch]
+```
