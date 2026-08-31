@@ -23,7 +23,11 @@ Thumbs.db
 .env
 
 # MLflow
+mlflow.db
+mlflow.db-shm
+mlflow.db-wal
 mlruns/
+mlartifacts/
 
 # Models / generated artifacts
 models/*.pkl
