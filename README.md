@@ -43,6 +43,13 @@ O projeto utiliza a base pública **Bank Marketing**, disponibilizada no Kaggle:
 
 https://www.kaggle.com/datasets/henriqueyamahata/bank-marketing
 
+A base tem como fonte original o **UCI Machine Learning Repository**:
+
+**Bank Marketing — Moro, Rita e Cortez (2014)**  
+DOI: `10.24432/C5K306`
+
+A base original é disponibilizada sob licença **Creative Commons Attribution 4.0 International (CC BY 4.0)**.
+
 Foi utilizada a versão:
 
 ```text
@@ -211,8 +218,6 @@ fiap-datathon-mlet/
 │   ├── api.py
 │   ├── bandit.py
 │   └── mlflow_tracking.py
-├── tests/
-├── models/
 ├── .gitignore
 ├── README.md
 └── requirements.txt
