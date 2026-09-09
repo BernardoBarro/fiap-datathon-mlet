@@ -84,12 +84,7 @@ class RecommendationPolicy:
             for arm in self.arms
         }
 
-    def recommend(
-        self,
-        previous: int,
-        mode: str = "deterministic",
-    ) -> dict:
-        context = self.get_context(previous)
+    def _build_response(self, context: str, mode: str) -> dict:
         posterior = self.posterior_estimates(context)
 
         if mode == "thompson":
@@ -123,3 +118,23 @@ class RecommendationPolicy:
                 for arm, value in scores.items()
             },
         }
+
+    def recommend(
+        self,
+        previous: int,
+        mode: str = "deterministic",
+    ) -> dict:
+        context = self.get_context(previous)
+        return self._build_response(context=context, mode=mode)
+
+    def recommend_by_context(
+        self,
+        context: str,
+        mode: str = "deterministic",
+    ) -> dict:
+        if context not in self.CONTEXTS:
+            raise ValueError(
+                f"Contexto inválido: '{context}'. "
+                f"Valores aceitos: {self.CONTEXTS}"
+            )
+        return self._build_response(context=context, mode=mode)

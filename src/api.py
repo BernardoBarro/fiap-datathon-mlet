@@ -1,8 +1,8 @@
 from functools import lru_cache
-from typing import Literal
+from typing import Literal, Optional
 
 from fastapi import Depends, FastAPI
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, model_validator
 
 from src.bandit import RecommendationPolicy
 
@@ -14,11 +14,30 @@ app = FastAPI(
 
 
 class RecommendationRequest(BaseModel):
-    previous: int = Field(
+    previous: Optional[int] = Field(
+        default=None,
         ge=0,
-        description="Quantidade de contatos anteriores com o cliente.",
+        description=(
+            "Quantidade de contatos anteriores com o cliente. "
+            "Utilizado para derivar o contexto quando 'context' não é informado."
+        ),
+    )
+    context: Optional[Literal["none", "one", "two_plus"]] = Field(
+        default=None,
+        description=(
+            "Contexto do cliente. Quando informado, tem prioridade sobre 'previous'. "
+            "Valores aceitos: 'none', 'one', 'two_plus'."
+        ),
     )
     mode: Literal["deterministic", "thompson"] = "deterministic"
+
+    @model_validator(mode="after")
+    def check_context_or_previous(self) -> "RecommendationRequest":
+        if self.context is None and self.previous is None:
+            raise ValueError(
+                "Informe 'previous' ou 'context'. Pelo menos um dos campos é obrigatório."
+            )
+        return self
 
 
 class RecommendationResponse(BaseModel):
@@ -47,6 +66,12 @@ def recommend(
     request: RecommendationRequest,
     policy: RecommendationPolicy = Depends(get_policy),
 ):
+    if request.context is not None:
+        return policy.recommend_by_context(
+            context=request.context,
+            mode=request.mode,
+        )
+
     return policy.recommend(
         previous=request.previous,
         mode=request.mode,

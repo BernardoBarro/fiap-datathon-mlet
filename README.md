@@ -68,6 +68,20 @@ notebooks/01_eda.ipynb
 
 ---
 
+## Governança e uso responsável dos dados
+
+Este projeto utiliza exclusivamente dados públicos e anonimizados disponibilizados no Kaggle. Nenhum dado real de clientes, identificadores pessoais, patrimônio, renda, gênero ou raça foi utilizado.
+
+**Finalidade:** os dados são utilizados exclusivamente para fins acadêmicos e de demonstração técnica no contexto do Datathon da Pós-Tech FIAP em Machine Learning Engineering.
+
+**Minimização de dados:** apenas as colunas necessárias para o experimento foram utilizadas. A variável `duration` foi descartada por representar vazamento de informação, e a variável `contact` foi utilizada como definição dos braços da política adaptativa.
+
+**Base legal (LGPD / GDPR):** uso acadêmico de dados públicos, sem processamento de dados pessoais reais. Decisões sensíveis em um cenário de produção real devem manter o humano no loop.
+
+**Retenção:** os dados não são armazenados além do necessário para execução local dos experimentos. O arquivo da base original não é versionado no repositório.
+
+---
+
 ## Preparação dos dados
 
 O pré-processamento está disponível em:
